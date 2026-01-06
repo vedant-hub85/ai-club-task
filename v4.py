@@ -34,13 +34,11 @@ categorical_col = ["Diet_Type", "District_Name", "Vehicle_Owned", "Work_District
 preprocessor = ColumnTransformer(
     transformers=[
         ("num", Pipeline([
-            ("imputer", SimpleImputer(strategy="median")),
             ("scaler", StandardScaler())
         ]), numerical_cols),
 
         ("cat", Pipeline([
-            ("imputer", SimpleImputer(strategy="most_frequent")),
-            ("onehot", OneHotEncoder(handle_unknown="ignore"))
+            ("onehot", OneHotEncoder())
         ]), categorical_col)
     ]
 )
